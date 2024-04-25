@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Italian Cuisine-Recipes</title>
+  <link rel="icon" href="./img/favicon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="./css/recipes.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="../img/nav.png" alt="Italian Cuisine Logo">
+        Italian Cuisine
+      </a>
+      <div class="search-box">
+        <input type="text" id="searchInput" list="suggestions" placeholder="Look for a recipe.." aria-label="Search">
+        <button type="button" onclick="searchRecipes()"><i class="fas fa-search"></i></button>
+        <datalist id="suggestions"></datalist>
+    </div>
+    <div id="resultsContainer" class="results-container" style="display: none;"></div>    
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/recipes">Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/history">History</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="sidebar">
+            <h3>Recipe Categories</h3>
+            <ul class="list-unstyled">
+                <% categories.forEach(category => { %>
+                    <li><a href="/recipes/<%= category.toLowerCase() %>"><%= category %></a></li>
+                <% }); %>
+            </ul>          
+          </div>                 
+        </div>
+        <div class="col-lg-9 featured-recipes">
+          <h2>Populer Recipes</h2>
+          <div class="row">
+            <% for (let i = 0; i < recipes.length; i++) { %>
+                <% if (i % 3 === 0) { %>
+                    <% if (i > 0) { %>
+                        </div>
+                    <% } %>
+                    <div class="row">
+                <% } %>
+                <div class="col-lg-4 mb-4">
+                  <div class="card">
+                      <img src="<%= recipes[i].img %>" class="card-img-top" alt="<%= recipes[i].title %>">
+                      <div class="card-body">
+                          <h5 class="card-title"><%= recipes[i].title %></h5>
+                          <p class="card-text"><%= recipes[i].description %></p>
+                          <a href="/recipes/<%= recipes[i].category.toLowerCase() %>/<%= recipes[i].id %>" class="btn btn-primary mt-auto">View Recipe</a>
+                      </div>
+                  </div>
+              </div>            
+            <% } %>
+                    </div> 
+      </div>
+      <div class="col-8 text-center pagination-container">
+        <nav aria-label="Page navigation example" class="text-center">
+          <ul class="pagination justify-content-center mt-4">
+              <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+                  <a class="page-link" href="<%= currentPage === 1 ? '#' : '/recipes?page=' + (currentPage - 1) %>">Previous</a>
+              </li>
+              <% let startPage = 1; %>
+              <% if (totalPages > 7 && currentPage > 4) { %>
+                  <% startPage = currentPage - 3; %>
+                  <li class="page-item disabled">
+                      <span class="page-link">...</span>
+                  </li>
+              <% } %>
+              <% for (let i = startPage; i <= totalPages && i <= startPage + 6; i++) { %>
+                  <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                      <a class="page-link" href="/recipes?page=<%= i %>"><%= i %></a>
+                  </li>
+              <% } %>
+              <% if (totalPages > 7 && currentPage < totalPages - 3) { %>
+                  <li class="page-item disabled">
+                      <span class="page-link">...</span>
+                  </li>
+              <% } %>
+              <li class="page-item <%= currentPage === totalPages ? 'disabled' : '' %>">
+                  <a class="page-link" href="<%= currentPage === totalPages ? '#' : '/recipes?page=' + (currentPage + 1) %>">Next</a>
+              </li>
+          </ul>
+      </nav>  
+      </div>
+      </div>
+    </div>   
+  </section>
+   
+       
+    <footer class="bg-dark text-white py-4">
+      <div class="context-center container-fluid">
+        <p>&copy; 2024 Italian Cuisine</p>
+      </div>
+  </footer>
+  
+  <script src="./js/searchRecipes.js"></script>
+  <script src="./js/recipes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
