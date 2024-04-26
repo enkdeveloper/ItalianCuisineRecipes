@@ -1,5 +1,5 @@
 Italian Cuisine Recipes
-https://italiancuisine.onrender.com/
+https://italiancuisinerecipes.onrender.com/
 
 Welcome to the Italian Cuisine Recipes website! This platform offers a wide range of delicious Italian recipes for you to explore and enjoy.
 
