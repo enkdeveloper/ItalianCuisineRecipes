@@ -5,6 +5,8 @@ Welcome to the Italian Cuisine Recipes website! This platform offers a wide rang
 
 
 
+
+
 Features
 
 Browse recipes by categories such as pasta, pizza, risotto, seafood, and desserts.
@@ -14,6 +16,8 @@ View detailed information for each recipe, including ingredients and instruction
 Search for recipes by name or category.
 
 Responsive design for seamless browsing on both mobile and desktop devices.
+
+
 
 
 
@@ -37,6 +41,8 @@ Bootstrap
 
 
 
+
+
 Screenshots
 
 ![Ekran görüntüsü 2024-04-26 120230](https://github.com/enkdeveloper/ItalianCuisineRecipes/assets/119349974/7f50c9c0-da3c-4d87-b42d-497c45ad9686)
@@ -48,9 +54,13 @@ Screenshots
 
 
 
+
+
 Contributing
 
 Contributions are welcome! If you have any Italian recipes you'd like to share or if you'd like to contribute to the development of this project, please feel free to fork the repository and submit pull requests.
+
+
 
 
 
